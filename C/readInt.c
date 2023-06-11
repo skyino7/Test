@@ -37,6 +37,16 @@ void getIntegerFromStdin(int *inputInteger)
 		
 		input = fgets(inputBuffer, MAX_DIGITS, stdin);
 
+		//If fgets() receives less than MAX_DIGITS, the last char in the array is '\n'
+		//Therefore if the last char is not '\n', too many characters were entered.
+		if (inputBuffer[strlen(inputBuffer) - 1] != '\n')
+		{
+			fprintf(stderr, "[ERROR]: Too many characters: max input is %d chars.\n", MAX_DIGITS);
+			ClearInputBuffer();
+			input = NULL;
+			continue;
+		}
+
 
 
 }
